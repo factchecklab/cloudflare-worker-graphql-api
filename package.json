@@ -6,11 +6,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier --write '**/*.{js,css,json,md}'"
+    "format": "prettier --write '**/*.{js,css,json,md}'",
+    "deploy": "wrangler publish" 
   },
   "author": "Kwok-kuen Cheung <me@cheungpat.com>",
   "license": "MIT",
   "devDependencies": {
+    "@cloudflare/wrangler": "^1.9.2",
     "prettier": "^1.18.2"
   }
 }

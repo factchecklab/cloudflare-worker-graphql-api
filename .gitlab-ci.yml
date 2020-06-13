@@ -4,10 +4,14 @@ stages:
 
 .deploy: &deploy_template
   image: node:lts
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - node_modules/
   before_script:
-    - npm install -g @cloudflare/wrangler@1.9.2
+    - yarn install
   script:
-    - wrangler publish --env $CI_ENVIRONMENT_NAME
+    - yarn deploy --env $CI_ENVIRONMENT_NAME
 
 staging:
   <<: *deploy_template
