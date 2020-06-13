@@ -1,0 +1,28 @@
+stages:
+  - staging
+  - production
+
+.deploy: &deploy_template
+  image: node:lts
+  before_script:
+    - npm install -g @cloudflare/wrangler@1.9.2
+  script:
+    - wrangler publish --env $CI_ENVIRONMENT_NAME
+
+staging:
+  <<: *deploy_template
+  stage: staging
+  environment:
+    name: staging
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "master"'
+
+production:
+  <<: *deploy_template
+  stage: production
+  environment:
+    name: production
+  allow_failure: false
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "master"'
+      when: manual
