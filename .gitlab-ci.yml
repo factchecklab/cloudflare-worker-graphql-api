@@ -4,11 +4,6 @@ stages:
 
 .deploy: &deploy_template
   image: node:lts
-  cache:
-    key: ${CI_COMMIT_REF_SLUG}
-    paths:
-      - node_modules/
-      - .wrangler/
   before_script:
     - yarn install
     - cp $WRANGLER_CONFIG wrangler.toml
