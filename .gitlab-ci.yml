@@ -10,6 +10,7 @@ stages:
       - node_modules/
   before_script:
     - yarn install
+    - cp $WRANGLER_CONFIG wrangler.toml
   script:
     - yarn deploy --env $CI_ENVIRONMENT_NAME
 
