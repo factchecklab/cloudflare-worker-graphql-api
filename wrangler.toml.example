@@ -1,0 +1,19 @@
+# SPDX-FileCopyrightText: 2020 tech@factchecklab <tech@factchecklab.org>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+name = "graphql-api-dev"
+type = "javascript"
+workers_dev = true
+
+[env.staging]
+name = "graphql-api-staging"
+workers_dev = false
+route = "staging.example.com/graphql"
+vars = {ORIGIN = "origin.example.com"}
+
+[env.production]
+name = "graphql-api-prod"
+workers_dev = false
+route = "api.example.com/graphql"
+vars = {ORIGIN = "origin.example.com"}
